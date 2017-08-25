@@ -57,37 +57,6 @@ import org.eclipse.cdt.core.parser.DefaultLogService;
 /*  64 */     System.out.println("-----------------------------------------------------");
 /*  65 */     System.out.println("-----------------------------------------------------");
 /*  66 */     System.out.println("-----------------------------------------------------");
-ASTVisitor visitor = new ASTVisitor() {
-  @Override
-  public int visit(IASTExpression expression) {
-    if(expression instanceof IASTIdExpression) {
-      IASTIdExpression id = (IASTIdExpression) expression;
-      IASTName name = id.getName();
-
-//        System.out.println("===================dump==============");
-//        System.out.println(id.toString());
-      try {
-        IASTName[] found = translationUnit.getDefinitionsInAST(name.getBinding());
-        System.out.println("====================dump here===================");
-
-//          System.out.print(expression.toString());
-//          System.out.print(expression.getFileLocation().getNodeOffset());
-//          System.out.print(" ");
-//          System.out.println(expression.getFileLocation().getNodeLength());
-        for(IASTName i:found) {
-          System.out.print(i.getFileLocation().getNodeOffset());
-          System.out.print(i.getFileLocation().getNodeLength());
-          System.out.println();
-        }
-      } catch (Exception e) {
-        //e.printStackTrace();
-      }
-    }
-    return 3;
-  }
-};
-visitor.shouldVisitExpressions = true;
-translationUnit.accept(visitor);
 /*     */ 
 ///*  68 */     ASTVisitor visitor = new ASTVisitor()
 ///*     */     {
